@@ -12,19 +12,20 @@ class CreatePayrollViewModel: ObservableObject {
     
     private let repository: PayrollRepository
     
+    @Published var employees: [Employee] = []
+    @Published var selectedEmployee: Employee? = nil
+    @Published var toastMessage: String?
+    @Published var showToast = false
+    
     init(repository: PayrollRepository = PayrollRepositoryImpl()) {
         self.repository = repository
     }
-    
-    @Published var employees: [Employee] = []
-    @Published var toastMessage: String?
-    @Published var showToast = false
     
     func addEmployee(_ employee: Employee) {
         employees.append(employee)
     }
     
-    func validateEmployee(name: String, wages: Double, isExempt: Bool) throws -> Employee {
+    func validateEmployee(id: UUID? = nil, name: String, wages: Double, isExempt: Bool) throws -> Employee {
         
         let trimmedName = name.trimmingCharacters(in: .whitespacesAndNewlines)
         
@@ -37,11 +38,16 @@ class CreatePayrollViewModel: ObservableObject {
         }
         
         return Employee(
-            id: UUID(),
+            id: id ?? UUID(),
             name: trimmedName,
             wages: wages,
             isExempt: isExempt
         )
+    }
+    
+    func updateEmployee(_ employee: Employee) {
+        guard let index = employees.firstIndex(where: { $0.id == employee.id }) else { return }
+        employees[index] = employee
     }
     
     func removeEmployee(_ employee: Employee) {

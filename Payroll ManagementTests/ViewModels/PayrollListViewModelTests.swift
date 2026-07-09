@@ -1,14 +1,13 @@
 //
-//  Payroll_ManagementTests.swift
-//  Payroll ManagementTests
+//  PayrollListViewModelTests.swift
+//  PayrollManagementTests
 //
-//  Created by Vikram Sukumaran on 07/07/2026.
+//  Created by Vikram Sukumaran on 09/07/26.
 //
 
 import XCTest
-@testable import PayrollManagement
 
-final class Payroll_ManagementTests: XCTestCase {
+final class PayrollListViewModelTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -24,8 +23,6 @@ final class Payroll_ManagementTests: XCTestCase {
         // Any test you write for XCTest can be annotated as throws and async.
         // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
         // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-        // XCTest Documentation
-        // https://developer.apple.com/documentation/xctest
     }
 
     func testPerformanceExample() throws {

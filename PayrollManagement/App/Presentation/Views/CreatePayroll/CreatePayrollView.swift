@@ -47,6 +47,11 @@ struct CreatePayrollView: View {
                                             createPayrollVM.removeEmployee(employee)
                                         }
                                     )
+                                    .onTapGesture {
+                                        // MARK: EDIT EXISTING EMPLOYEE
+                                        createPayrollVM.selectedEmployee = employee
+                                        showAddEmployeeSheet = true
+                                    }
                                 }
                             }
                             .padding([.top, .bottom], 20)
@@ -68,14 +73,19 @@ struct CreatePayrollView: View {
         }
         .navigationBarHidden(true)
         .sheet(isPresented: $showAddEmployeeSheet, content: {
-            AddEmployeeSheet { employee in
-                let employee = try createPayrollVM.validateEmployee(
+            AddEmployeeSheet(employeeToEdit: createPayrollVM.selectedEmployee) { employee in
+                let validatedEmployee = try createPayrollVM.validateEmployee(
+                    id: employee.id,
                     name: employee.name,
                     wages: employee.wages,
                     isExempt: employee.isExempt
                 )
                 
-                createPayrollVM.addEmployee(employee)
+                if createPayrollVM.selectedEmployee != nil {
+                    createPayrollVM.updateEmployee(validatedEmployee)
+                } else {
+                    createPayrollVM.addEmployee(validatedEmployee)
+                }
             }
         })
         .toast(

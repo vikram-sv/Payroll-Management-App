@@ -38,7 +38,7 @@ struct PayrollListView: View {
                         imageName: "person.2.fill",
                         title: "No Payrolls",
                         message: "Tap the button below to add a new payroll",
-                        buttonTitle: "Add Payroll",
+                        buttonTitle: "Add New Payroll",
                         onButtonTap: {
                             showCreatePayroll = true
                         }
