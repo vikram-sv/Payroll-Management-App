@@ -14,6 +14,8 @@ struct EmployeeCardView: View {
     private var totalWages: String {
         NumberFormatter.currency.string(from: NSNumber(value: employee.wages)) ?? "$0.00"
     }
+    
+    var onDelete: ((Employee) -> Void)? = nil
 
     var body: some View {
         
@@ -36,19 +38,9 @@ struct EmployeeCardView: View {
         .padding(.horizontal, 5)
         .overlay(
             ZStack {
-                Button {
-                    // MARK: DELETE
-                    
-                } label: {
-                    Image(systemName: "trash")
-                        .font(.system(size: 15))
-                        .foregroundColor(Color.red)
-                        .frame(width: 35, height: 35)
-                        .background(Color.white)
-                        .clipShape(Circle())
-                        .shadow(color: Color.black.opacity(0.1), radius: 2/*, x: 0, y: 2*/)
+                DeleteButton {
+                    onDelete?(employee)
                 }
-
             }
             .padding(15),
             alignment: .bottomTrailing
@@ -61,6 +53,11 @@ struct EmployeeCardView: View {
 #Preview {
     EmployeeCardView(
         employee:
-            Employee(name: "Vikram", wages: 19000, isExempt: true)
+            Employee(
+                id: UUID(),
+                name: "Vikram",
+                wages: 19000,
+                isExempt: true
+            )
     )
 }

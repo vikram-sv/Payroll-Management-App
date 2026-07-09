@@ -9,42 +9,77 @@ import SwiftUI
 
 struct PayrollListView: View {
     
+    @StateObject var payrollListVM: PayrollListViewModel = PayrollListViewModel()
+    
     @State private var showCreatePayroll: Bool = false
-
-    private let summaries: [PayrollSummary] = [
-        PayrollSummary(
-            createdDate: DateFormatter.payrollInput.date(from: "07 Jul 2026") ?? Date(),
-            employeeCount: 3,
-            total: 4800
-        )
-    ]
 
     var body: some View {
         ZStack {
             VStack(alignment: .leading, spacing: 0) {
                 
-                // MARK: - HEARDER
+                // MARK: - HEADER
                 HeaderView(headerName: "Payroll Lists")
+                
+                switch payrollListVM.viewState {
 
-                // MARK: - PAYROLL LISTS
-                ScrollView(showsIndicators: true) {
-                    VStack(spacing: 15) {
-                        ForEach(summaries.indices, id: \.self) { index in
-                            PayrollSummaryCardView(detail: summaries[index])
+                case .loading:
+                    ProgressView()
+
+                case .empty:
+                    PlaceholderView(
+                        imageName: "person.2.fill",
+                        title: "No Payrolls",
+                        message: "Tap the button below to add a new payroll",
+                        buttonTitle: "Add Payroll",
+                        onButtonTap: {
+                            showCreatePayroll = true
                         }
+                    )
+
+                case .loaded:
+                    // MARK: - PAYROLL LISTS
+                    ScrollView(showsIndicators: true) {
+                        VStack(spacing: 15) {
+                            ForEach(payrollListVM.payrollLists) { payroll in
+                                NavigationLink {
+                                    PayrollDetailView(payroll: payroll)
+                                } label: {
+                                    PayrollSummaryCardView(detail: payroll)
+                                }
+                            }
+                        }
+                        .padding(.top, 20)
                     }
-                    .padding(.top, 20)
+
+                case .error(let message):
+                    PlaceholderView(
+                        imageName: "exclamationmark.triangle",
+                        title: "Something went wrong",
+                        message: message,
+                        buttonTitle: "Try Again",
+                        onButtonTap: {
+                            payrollListVM.fetchPayrolls()
+                        }
+                    )
                 }
+                
             }
             .padding(15)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
 
             // MARK: - CREATE BUTTON
-            createButton
+            if !payrollListVM.payrollLists.isEmpty {
+                createButton
+            }
         }
         .navigationBarHidden(true)
-        .fullScreenCover(isPresented: $showCreatePayroll) {
+        .fullScreenCover(isPresented: $showCreatePayroll, onDismiss: {
+            payrollListVM.fetchPayrolls()
+        }) {
             CreatePayrollView()
+        }
+        .onAppear {
+            payrollListVM.fetchPayrolls()
         }
         
     }

@@ -13,6 +13,7 @@ struct CreatePayrollView: View {
     @Environment(\.dismiss) private var dismiss
     
     @State private var showAddEmployeeSheet: Bool = false
+    @State private var showAlertFetchingError: Bool = false
     
     var body: some View {
         ZStack {
@@ -41,7 +42,12 @@ struct CreatePayrollView: View {
                         ScrollView(showsIndicators: true) {
                             LazyVStack(spacing: 15) {
                                 ForEach(createPayrollVM.employees) { employee in
-                                    EmployeeCardView(employee: employee)
+                                    EmployeeCardView(
+                                        employee: employee,
+                                        onDelete: { employee in
+                                            createPayrollVM.removeEmployee(employee)
+                                        }
+                                    )
                                 }
                             }
                             .padding([.top, .bottom], 20)
@@ -50,6 +56,7 @@ struct CreatePayrollView: View {
                         addEmployeeButton
                         
                         savePayrollButton
+                        
                     }
                 }
                 
@@ -68,6 +75,13 @@ struct CreatePayrollView: View {
                 createPayrollVM.addEmployee(employee)
             }
         })
+        .alert(isPresented: $showAlertFetchingError) {
+            Alert(
+                title: Text("Something went wrong"),
+                message: Text("Please, try again later"),
+                dismissButton: .destructive(Text("OK"))
+            )
+        }
         
     }
     
@@ -116,7 +130,12 @@ extension CreatePayrollView {
     private var savePayrollButton: some View {
         Button {
             // MARK: SAVE ACTION
-            
+            do {
+                try createPayrollVM.savePayroll()
+                dismiss()
+            } catch {
+                self.showAlertFetchingError = true
+            }
         } label: {
             Text("Save Payroll")
                 .font(.system(size: 17, weight: .semibold))

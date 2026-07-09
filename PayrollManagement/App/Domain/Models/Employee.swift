@@ -8,7 +8,7 @@
 import Foundation
 
 struct Employee: Identifiable {
-    let id = UUID()
+    let id: UUID
     let name: String
     let wages: Double
     let isExempt: Bool

@@ -102,6 +102,7 @@ extension AddEmployeeSheet {
         Button {
             
             let employee = Employee(
+                id: UUID(),
                 name: employeeName,
                 wages: Double(totalWages) ?? 0,
                 isExempt: isTaxExempt

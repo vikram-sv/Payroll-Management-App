@@ -9,21 +9,34 @@ import SwiftUI
 
 struct PayrollSummaryCardView: View {
 
-    let detail: PayrollSummary
+    let detail: Payroll
 
     private var dateFormatted: String {
         DateFormatter.payrollDisplay.string(from: detail.createdDate)
     }
 
+    private var totalWages: Double {
+
+        var total: Double = 0
+
+        for employee in detail.employees {
+            total += employee.wages
+        }
+
+        return total
+    }
+
     private var totalFormatted: String {
-        NumberFormatter.currency.string(from: NSNumber(value: detail.total)) ?? "$0.00"
+        NumberFormatter.currency.string(
+            from: NSNumber(value: totalWages)
+        ) ?? "$0.00"
     }
 
     var body: some View {
         
         VStack(alignment: .leading, spacing: 15) {
             SummaryRow(label: "Created", value: dateFormatted)
-            SummaryRow(label: "Employees", value: "\(detail.employeeCount)")
+            SummaryRow(label: "Employees", value: "\(detail.employees.count)")
             SummaryRow(label: "Total", value: totalFormatted)
         }
         .padding(20)
@@ -46,10 +59,17 @@ struct PayrollSummaryCardView: View {
 #Preview {
     PayrollSummaryCardView(
         detail:
-            PayrollSummary(
-                createdDate: DateFormatter.payrollInput.date(from: "07 Jul 2026") ?? Date(),
-                employeeCount: 3,
-                total: 4800
+            Payroll(
+                id: UUID(),
+                createdDate: Date(),
+                employees: [
+                    Employee(
+                    id: UUID(),
+                    name: "Vikram",
+                    wages: 1500,
+                    isExempt: true
+                )
+                ]
             )
     )
 }
