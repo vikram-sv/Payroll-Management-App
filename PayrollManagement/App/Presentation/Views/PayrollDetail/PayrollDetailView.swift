@@ -84,7 +84,12 @@ struct PayrollDetailView: View {
                 ScrollView(showsIndicators: false) {
                     LazyVStack(spacing: 15) {
                         ForEach(payroll.employees) { employee in
-                            EmployeeDetailCardView(employee: employee)
+                            EmployeeDetailCardView(
+                                employee: employee,
+                                onDelete: { employee in
+                                    
+                                }
+                            )
                             
                             if employee.id != payroll.employees.last?.id {
                                 Divider()
@@ -134,24 +139,6 @@ struct PayrollDetailView: View {
                     name: "Vikram",
                     wages: 1500,
                     isExempt: true
-                ),
-                Employee(
-                    id: UUID(),
-                    name: "Vikram",
-                    wages: 1500,
-                    isExempt: false
-                ),
-                Employee(
-                    id: UUID(),
-                    name: "Vikram",
-                    wages: 1500,
-                    isExempt: false
-                ),
-                Employee(
-                    id: UUID(),
-                    name: "Vikram",
-                    wages: 1500,
-                    isExempt: false
                 )
             ]
         )

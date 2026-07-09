@@ -69,7 +69,20 @@ final class PayrollRepositoryImpl: PayrollRepository {
 
     }
     
-    
+    func deletePayroll(id: UUID) throws {
+
+        let request: NSFetchRequest<PayrollEntity> = PayrollEntity.fetchRequest()
+
+        request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+
+        guard let payroll = try context.fetch(request).first else {
+            return
+        }
+
+        context.delete(payroll)
+
+        try context.save()
+    }
     
     
     

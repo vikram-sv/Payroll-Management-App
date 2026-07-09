@@ -13,6 +13,7 @@ final class PayrollListViewModel: ObservableObject {
     
     @Published var payrollLists: [Payroll] = []
     @Published var viewState: PayrollListViewState = .loading
+    @Published var selectedPayroll: Payroll?
     
     private let repository: PayrollRepository
     
@@ -32,6 +33,19 @@ final class PayrollListViewModel: ObservableObject {
             } else {
                 viewState = .loaded
             }
+        } catch {
+            viewState = .error(error.localizedDescription)
+        }
+    }
+    
+    func deletePayroll(_ payroll: Payroll) {
+
+        do {
+            
+            try repository.deletePayroll(id: payroll.id)
+            payrollLists.removeAll { $0.id == payroll.id }
+            viewState = payrollLists.isEmpty ? .empty : .loaded
+
         } catch {
             viewState = .error(error.localizedDescription)
         }

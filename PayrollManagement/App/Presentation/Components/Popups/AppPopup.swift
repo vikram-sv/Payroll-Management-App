@@ -43,7 +43,7 @@ struct AppPopup: View {
                         .frame(maxWidth: .infinity)
                         .frame(height: 44)
                         .background(Color.gray.opacity(0.15))
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .clipShape(RoundedRectangle(cornerRadius: 5))
                     }
 
                     Button(primaryTitle) {
@@ -53,7 +53,7 @@ struct AppPopup: View {
                     .frame(height: 44)
                     .background(Color.red)
                     .foregroundColor(.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .clipShape(RoundedRectangle(cornerRadius: 5))
                 }
             }
             .padding(24)

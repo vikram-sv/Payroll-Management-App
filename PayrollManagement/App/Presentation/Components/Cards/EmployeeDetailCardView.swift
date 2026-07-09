@@ -35,6 +35,8 @@ struct EmployeeDetailCardView: View {
         ) ?? "$0.00"
     }
     
+    var onDelete: ((Employee) -> Void)? = nil
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 15) {
             SummaryRow(label: "Employee", value: employee.name)
@@ -51,7 +53,7 @@ struct EmployeeDetailCardView: View {
         .overlay(
             ZStack {
                 DeleteButton {
-                    
+                    onDelete?(employee)
                 }
             }
             .padding(.trailing, 15 ),

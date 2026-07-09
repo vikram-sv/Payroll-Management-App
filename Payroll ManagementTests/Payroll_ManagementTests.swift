@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import Payroll_Management
+@testable import PayrollManagement
 
 final class Payroll_ManagementTests: XCTestCase {
 

@@ -17,9 +17,31 @@ class CreatePayrollViewModel: ObservableObject {
     }
     
     @Published var employees: [Employee] = []
+    @Published var toastMessage: String?
+    @Published var showToast = false
     
     func addEmployee(_ employee: Employee) {
         employees.append(employee)
+    }
+    
+    func validateEmployee(name: String, wages: Double, isExempt: Bool) throws -> Employee {
+        
+        let trimmedName = name.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        guard !trimmedName.isEmpty else {
+            throw EmployeeValidationError.emptyName
+        }
+        
+        guard wages > 0 else {
+            throw EmployeeValidationError.invalidWages
+        }
+        
+        return Employee(
+            id: UUID(),
+            name: trimmedName,
+            wages: wages,
+            isExempt: isExempt
+        )
     }
     
     func removeEmployee(_ employee: Employee) {

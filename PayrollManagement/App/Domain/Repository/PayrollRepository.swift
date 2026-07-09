@@ -13,4 +13,6 @@ protocol PayrollRepository {
     
     func fetchPayrolls() throws -> [Payroll]
     
+    func deletePayroll(id: UUID) throws
+    
 }

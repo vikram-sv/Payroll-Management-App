@@ -12,6 +12,7 @@ struct PayrollListView: View {
     @StateObject var payrollListVM: PayrollListViewModel = PayrollListViewModel()
     
     @State private var showCreatePayroll: Bool = false
+    @State private var showDeleteConfirmation: Bool = false
 
     var body: some View {
         ZStack {
@@ -44,7 +45,13 @@ struct PayrollListView: View {
                                 NavigationLink {
                                     PayrollDetailView(payroll: payroll)
                                 } label: {
-                                    PayrollSummaryCardView(detail: payroll)
+                                    PayrollSummaryCardView(
+                                        detail: payroll,
+                                        onDelete: { payroll in
+                                            payrollListVM.selectedPayroll = payroll
+                                            showDeleteConfirmation = true
+                                        }
+                                    )
                                 }
                             }
                         }
@@ -80,6 +87,25 @@ struct PayrollListView: View {
         }
         .onAppear {
             payrollListVM.fetchPayrolls()
+        }
+        .appPopup(isPresented: $showDeleteConfirmation) {
+            AppPopup(
+                title: "Delete Payroll",
+                message: "Are you sure you want to delete this payroll?",
+                primaryTitle: "Delete",
+                secondaryTitle: "Cancel",
+                primaryAction: {
+                    guard let payroll = payrollListVM.selectedPayroll else { return }
+                    
+                    payrollListVM.deletePayroll(payroll)
+                    
+                    showDeleteConfirmation = false
+                    payrollListVM.selectedPayroll = nil
+                },
+                secondaryAction: {
+                    showDeleteConfirmation = false
+                }
+            )
         }
         
     }

@@ -14,17 +14,37 @@ struct PopupModifier<PopupContent: View>: ViewModifier {
     let popup: () -> PopupContent
 
     func body(content: Content) -> some View {
-        ZStack {
+        ZStack(alignment: .bottom) {
             content
 
             if isPresented {
                 Color.black.opacity(0.35)
                     .ignoresSafeArea()
+                    .onTapGesture {
+                        withAnimation(.easeInOut(duration: 0.3)) {
+                            isPresented = false
+                        }
+                    }
 
                 popup()
-                    .transition(.scale.combined(with: .opacity))
+                    .transition(.move(edge: .bottom))
             }
         }
-        .animation(.easeInOut, value: isPresented)
+    }
+}
+
+extension View {
+
+    func appPopup<PopupContent: View>(
+        isPresented: Binding<Bool>,
+        @ViewBuilder content: @escaping () -> PopupContent
+    ) -> some View {
+
+        modifier(
+            PopupModifier(
+                isPresented: isPresented,
+                popup: content
+            )
+        )
     }
 }

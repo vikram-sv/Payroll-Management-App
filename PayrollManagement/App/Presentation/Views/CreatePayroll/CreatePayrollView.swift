@@ -68,13 +68,21 @@ struct CreatePayrollView: View {
             
         }
         .navigationBarHidden(true)
-        .sheet(isPresented: $showAddEmployeeSheet, onDismiss: {
-            
-        }, content: {
+        .sheet(isPresented: $showAddEmployeeSheet, content: {
             AddEmployeeSheet { employee in
+                let employee = try createPayrollVM.validateEmployee(
+                    name: employee.name,
+                    wages: employee.wages,
+                    isExempt: employee.isExempt
+                )
+                
                 createPayrollVM.addEmployee(employee)
             }
         })
+        .toast(
+            isPresented: $createPayrollVM.showToast,
+            message: createPayrollVM.toastMessage ?? "Please fill all the fields"
+        )
         .alert(isPresented: $showAlertFetchingError) {
             Alert(
                 title: Text("Something went wrong"),

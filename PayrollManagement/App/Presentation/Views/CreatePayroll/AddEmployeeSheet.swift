@@ -13,8 +13,11 @@ struct AddEmployeeSheet: View {
     @State private var totalWages: String = ""
     @State private var isTaxExempt: Bool = false
     
+    @State private var showToast: Bool = false
+    @State private var toastMessage: String?
+    
     @Environment(\.dismiss) var dismiss
-    var onAdd: ((Employee) -> Void)? = nil
+    var onAdd: ((Employee) throws -> Void)? = nil
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -35,6 +38,10 @@ struct AddEmployeeSheet: View {
         }
         .ignoresSafeArea(.keyboard, edges: .bottom)
         .navigationBarHidden(true)
+        .toast(
+            isPresented: $showToast,
+            message: toastMessage ?? "Please check the entered details"
+        )
         .onChange(of: employeeName) { newValue in
             let filtered = newValue.filter { $0.isLetter || $0 == " " }
             let trimmed = String(filtered.drop(while: { $0 == " " }))
@@ -107,10 +114,17 @@ extension AddEmployeeSheet {
                 wages: Double(totalWages) ?? 0,
                 isExempt: isTaxExempt
             )
-
-            onAdd?(employee)
             
-            dismiss()
+            do {
+                try onAdd?(employee)
+                dismiss()
+            } catch let error as EmployeeValidationError {
+                toastMessage = error.errorDescription
+                showToast = true
+            } catch {
+                toastMessage = "Something went wrong. Please try again."
+                showToast = true
+            }
             
         } label: {
             Text("Add Employee")

@@ -18,8 +18,8 @@ struct ToastView: View {
             .foregroundColor(.white)
             .padding(.horizontal, 16)
             .padding(.vertical, 12)
-            .background(Color.black.opacity(0.9))
-            .cornerRadius(10)
+            .background(Color.black.opacity(0.7))
+            .cornerRadius(3)
             .shadow(radius: 5)
             .padding(.horizontal, 20)
     }
