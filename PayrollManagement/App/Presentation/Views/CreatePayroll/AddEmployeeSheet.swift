@@ -9,6 +9,8 @@ import SwiftUI
 
 struct AddEmployeeSheet: View {
     
+    var employeeToEdit: Employee? = nil
+    
     @State private var employeeName: String = ""
     @State private var totalWages: String = ""
     @State private var isTaxExempt: Bool = false
@@ -19,11 +21,17 @@ struct AddEmployeeSheet: View {
     @Environment(\.dismiss) var dismiss
     var onAdd: ((Employee) throws -> Void)? = nil
     
+    private var isEditing: Bool {
+        employeeToEdit != nil
+    }
+    
     var body: some View {
         ZStack(alignment: .bottom) {
             Color.clear
                 .ignoresSafeArea()
-                .onTapGesture { hideKeyboard() }
+                .onTapGesture {
+                    hideKeyboard()
+                }
             
             VStack(alignment: .leading, spacing: 0) {
                 header
@@ -45,6 +53,14 @@ struct AddEmployeeSheet: View {
             isPresented: $showToast,
             message: toastMessage ?? "Please check the entered details"
         )
+        .onAppear {
+            // MARK: PRE-FILL FIELDS WHEN EDITING
+            if let employee = employeeToEdit {
+                employeeName = employee.name
+                totalWages = String(format: "%.0f", employee.wages)
+                isTaxExempt = employee.isExempt
+            }
+        }
         .onChange(of: employeeName) { newValue in
             let filtered = newValue.filter { $0.isLetter || $0 == " " }
             let trimmed = String(filtered.drop(while: { $0 == " " }))
@@ -71,7 +87,7 @@ extension AddEmployeeSheet {
     
     private var header: some View {
         HStack(spacing: 15) {
-            HeaderView(headerName: "Add Employee")
+            HeaderView(headerName: isEditing ? "Edit Employee" : "Add Employee")
             
             Button {
                 dismiss()
@@ -112,7 +128,7 @@ extension AddEmployeeSheet {
         Button {
             
             let employee = Employee(
-                id: UUID(),
+                id: employeeToEdit?.id ?? UUID(),
                 name: employeeName,
                 wages: Double(totalWages) ?? 0,
                 isExempt: isTaxExempt
@@ -130,7 +146,7 @@ extension AddEmployeeSheet {
             }
             
         } label: {
-            Text("Add Employee")
+            Text(isEditing ? "Update Employee" : "Add Employee")
                 .font(.system(size: 16, weight: .semibold))
                 .foregroundColor(.white)
                 .frame(height: 50)

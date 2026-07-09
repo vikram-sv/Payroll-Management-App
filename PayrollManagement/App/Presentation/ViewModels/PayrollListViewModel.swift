@@ -51,4 +51,9 @@ final class PayrollListViewModel: ObservableObject {
         }
     }
     
+    func updatePayrollInList(_ payroll: Payroll) {
+        guard let index = payrollLists.firstIndex(where: { $0.id == payroll.id }) else { return }
+        payrollLists[index] = payroll
+    }
+    
 }

@@ -84,6 +84,33 @@ final class PayrollRepositoryImpl: PayrollRepository {
         try context.save()
     }
     
-    
+    func updatePayroll(_ payroll: Payroll) throws {
+        
+        let request: NSFetchRequest<PayrollEntity> = PayrollEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "id == %@", payroll.id as CVarArg)
+        
+        guard let payrollEntity = try context.fetch(request).first else {
+            throw PayrollRepositoryError.payrollNotFound
+        }
+        
+        // MARK: REMOVE OLD EMPLOYEES
+        if let existingEmployees = payrollEntity.employees as? Set<EmployeeEntity> {
+            for employeeEntity in existingEmployees {
+                context.delete(employeeEntity)
+            }
+        }
+        
+        // MARK: ADD CURRENT EMPLOYEES
+        for employee in payroll.employees {
+            let employeeEntity = EmployeeEntity(context: context)
+            employeeEntity.id = employee.id
+            employeeEntity.name = employee.name
+            employeeEntity.wages = employee.wages
+            employeeEntity.isExempt = employee.isExempt
+            employeeEntity.payroll = payrollEntity
+        }
+        
+        try context.save()
+    }
     
 }

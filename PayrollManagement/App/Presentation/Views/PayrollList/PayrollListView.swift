@@ -12,6 +12,7 @@ struct PayrollListView: View {
     @StateObject var payrollListVM: PayrollListViewModel = PayrollListViewModel()
     
     @State private var showCreatePayroll: Bool = false
+    @State private var showEditPayroll: Bool = false
     @State private var showDeleteConfirmation: Bool = false
 
     var body: some View {
@@ -20,6 +21,12 @@ struct PayrollListView: View {
                 
                 // MARK: - HEADER
                 HeaderView(headerName: "Payroll Hub")
+                
+                Text("Welcome to Payroll Hub! Create, organize, and manage your payrolls all in one place.")
+                    .fontCustom(size: 15, weight: .regular)
+                    .foregroundColor(Color.AppColors.ThemeNavy)
+                    .padding(5)
+                    
                 
                 switch payrollListVM.viewState {
 
@@ -47,6 +54,10 @@ struct PayrollListView: View {
                                 } label: {
                                     PayrollSummaryCardView(
                                         detail: payroll,
+                                        onEdit: { payroll in
+                                            payrollListVM.selectedPayroll = payroll
+                                            showEditPayroll = true
+                                        },
                                         onDelete: { payroll in
                                             payrollListVM.selectedPayroll = payroll
                                             showDeleteConfirmation = true
@@ -85,6 +96,13 @@ struct PayrollListView: View {
             payrollListVM.fetchPayrolls()
         }) {
             CreatePayrollView()
+        }
+        .fullScreenCover(isPresented: $showEditPayroll) {
+            if let payroll = payrollListVM.selectedPayroll {
+                EditPayrollView(payroll: payroll) { updatedPayroll in
+                    payrollListVM.updatePayrollInList(updatedPayroll)
+                }
+            }
         }
         .onAppear {
             payrollListVM.fetchPayrolls()

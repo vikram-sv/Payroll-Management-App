@@ -10,6 +10,7 @@ import Foundation
 enum EmployeeValidationError: LocalizedError {
     case emptyName
     case invalidWages
+    case emptyPayroll
     
     var errorDescription: String? {
         switch self {
@@ -17,6 +18,8 @@ enum EmployeeValidationError: LocalizedError {
             return "Please enter a valid employee name."
         case .invalidWages:
             return "Please enter valid wages greater than 0."
+        case .emptyPayroll:
+            return "Please enter valid payroll details."
         }
     }
 }

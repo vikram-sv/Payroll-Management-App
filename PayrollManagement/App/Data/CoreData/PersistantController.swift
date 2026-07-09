@@ -26,7 +26,4 @@ final class PersistenceController {
 
         container.viewContext.automaticallyMergesChangesFromParent = true
     }
-    
-    
-    
 }

@@ -15,4 +15,6 @@ protocol PayrollRepository {
     
     func deletePayroll(id: UUID) throws
     
+    func updatePayroll(_ payroll: Payroll) throws
+    
 }

@@ -25,6 +25,17 @@ struct PayrollSummaryCardView: View {
 
         return total
     }
+    
+    private var totalNet: Double {
+
+        var totalNet: Double = 0
+
+        for employee in detail.employees {
+            totalNet += TaxCalculator.calculateNet(for: employee)
+        }
+
+        return totalNet
+    }
 
     private var totalFormatted: String {
         NumberFormatter.currency.string(
@@ -32,6 +43,13 @@ struct PayrollSummaryCardView: View {
         ) ?? "$0.00"
     }
     
+    private var netAmountFormatted: String {
+        NumberFormatter.currency.string(
+            from: NSNumber(value: totalNet)
+        ) ?? "$0.00"
+    }
+    
+    var onEdit: ((Payroll) -> Void)? = nil
     var onDelete: ((Payroll) -> Void)? = nil
 
     var body: some View {
@@ -40,52 +58,36 @@ struct PayrollSummaryCardView: View {
             Image(systemName: "calendar")
                 .fontCustom(size: 20, weight: .semibold)
                 .foregroundColor(Color.AppColors.ThemeNavy)
-                .frame(width: 48, height: 48)
+                .frame(width: 44, height: 44)
                 .background(Color.AppColors.ThemeBlueBG)
                 .cornerRadius(10)
-                .padding(.leading, 8)
             
             VStack(alignment: .leading, spacing: 12) {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("CREATION DATE")
-                        .fontCustom(size: 11, weight: .bold)
-                        .foregroundColor(.secondary)
-                    
-                    Text(dateFormatted)
-                        .fontCustom(size: 17, weight: .bold)
-                        .foregroundColor(.primary)
-                }
-                
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("EMPLOYEE COUNT")
-                        .fontCustom(size: 11, weight: .bold)
-                        .foregroundColor(.secondary)
-                    
-                    HStack(spacing: 6) {
-                        Image(systemName: "person.2.fill")
-                            .fontCustom(size: 12, weight: .medium)
+                HStack(spacing: 15) {
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text("CREATION DATE")
+                            .fontCustom(size: 11, weight: .bold)
                             .foregroundColor(.secondary)
-                        Text("\(detail.employees.count) Employees")
-                            .fontCustom(size: 15, weight: .medium)
+                        
+                        Text(dateFormatted)
+                            .fontCustom(size: 17, weight: .bold)
                             .foregroundColor(.primary)
                     }
-                }
-                
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("TOTAL DISBURSED")
-                        .fontCustom(size: 11, weight: .bold)
-                        .foregroundColor(.secondary)
                     
-                    Text(totalFormatted)
-                        .fontCustom(size: 24, weight: .bold)
-                        .foregroundColor(Color.AppColors.ThemeGreen)
-                }
-            }
-            
-            Spacer()
-            
-            VStack(alignment: .trailing, spacing: 0) {
-                if onDelete != nil {
+                    Spacer(minLength: 0)
+                    
+                    Button {
+                        onEdit?(detail)
+                    } label: {
+                        Image(systemName: "pencil.line")
+                            .fontCustom(size: 13, weight: .regular)
+                            .foregroundColor(Color.AppColors.ThemeNavy)
+                            .frame(width: 32, height: 32)
+                            .background(Color(.systemGray6))
+                            .clipShape(Circle())
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                    
                     Button {
                         onDelete?(detail)
                     } label: {
@@ -97,17 +99,44 @@ struct PayrollSummaryCardView: View {
                             .clipShape(Circle())
                     }
                     .buttonStyle(PlainButtonStyle())
+                    
                 }
                 
-                Spacer()
+                VStack(alignment: .leading, spacing: 5) {
+                    Text("EMPLOYEE COUNT")
+                        .fontCustom(size: 11, weight: .bold)
+                        .foregroundColor(.secondary)
+                    
+                    HStack(spacing: 6) {
+                        Image(systemName: "person.2.fill")
+                            .fontCustom(size: 12, weight: .medium)
+                            .foregroundColor(.secondary)
+                        
+                        Text("\(detail.employees.count) Employees")
+                            .fontCustom(size: 15, weight: .medium)
+                            .foregroundColor(.primary)
+                    }
+                }
                 
-                Image(systemName: "chevron.right")
-                    .fontCustom(size: 16, weight: .semibold)
-                    .foregroundColor(Color(.systemGray3))
-                    .padding(.bottom, 5)
+                VStack(alignment: .leading, spacing: 5) {
+                    Text("TOTAL DISBURSED")
+                        .fontCustom(size: 11, weight: .bold)
+                        .foregroundColor(.secondary)
+                    
+                    Text(netAmountFormatted)
+                        .fontCustom(size: 20, weight: .bold)
+                        .foregroundColor(Color.AppColors.ThemeGreen)
+                }
             }
         }
         .padding(20)
+        .overlay(alignment: .bottomTrailing) {
+            Image(systemName: "chevron.right")
+                .fontCustom(size: 16, weight: .semibold)
+                .foregroundColor(Color(.systemGray3))
+                .padding(.bottom, 20)
+                .padding(.trailing, 20)
+        }
         .background(
             RoundedRectangle(cornerRadius: 16, style: .continuous)
                 .fill(Color(.systemBackground))
