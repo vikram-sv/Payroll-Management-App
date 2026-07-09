@@ -23,7 +23,6 @@ struct CreatePayrollView: View {
                 // MARK: - HEADER
                 header
                 
-                
                 if createPayrollVM.employees.isEmpty {
                    
                     PlaceholderView(
@@ -111,7 +110,7 @@ extension CreatePayrollView {
             } label: {
                 Image(systemName: "xmark")
                     .font(.system(size: 20, weight: .semibold))
-                    .foregroundColor(Color.black)
+                    .foregroundColor(.primary)
                     .padding(10)
                     .contentShape(Rectangle())
             }
@@ -125,11 +124,11 @@ extension CreatePayrollView {
             showAddEmployeeSheet = true
         } label: {
             Text("Add Employee")
-                .font(.system(size: 17, weight: .semibold))
-                .foregroundColor(Color.white)
-                .frame(height: 45)
+                .fontCustom(size: 16, weight: .semibold)
+                .foregroundColor(.white)
+                .frame(height: 50)
                 .frame(maxWidth: .infinity)
-                .background(Color.blue)
+                .background(Color.AppColors.ThemeNavy)
                 .cornerRadius(10)
                 .contentShape(RoundedRectangle(cornerRadius: 10))
         }
@@ -146,11 +145,11 @@ extension CreatePayrollView {
             }
         } label: {
             Text("Save Payroll")
-                .font(.system(size: 17, weight: .semibold))
-                .foregroundColor(Color.white)
-                .frame(height: 45)
+                .fontCustom(size: 16, weight: .semibold)
+                .foregroundColor(.white)
+                .frame(height: 50)
                 .frame(maxWidth: .infinity)
-                .background(Color.green)
+                .background(Color.AppColors.ThemeGreen)
                 .cornerRadius(10)
                 .contentShape(RoundedRectangle(cornerRadius: 10))
         }

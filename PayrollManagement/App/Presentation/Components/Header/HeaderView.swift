@@ -31,7 +31,7 @@ struct HeaderView: View {
     
     var body: some View {
         Text(headerName)
-            .font(.system(size: fontsize, weight: fontWeight))
+            .fontCustom(size: fontsize, weight: fontWeight)
             .foregroundStyle(foregroundColor)
             .frame(maxWidth: .infinity, alignment: position)
             .padding(5)

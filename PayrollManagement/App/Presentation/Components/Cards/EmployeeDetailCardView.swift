@@ -38,26 +38,77 @@ struct EmployeeDetailCardView: View {
     var onDelete: ((Employee) -> Void)? = nil
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 15) {
-            SummaryRow(label: "Employee", value: employee.name)
-            SummaryRow(label: "Wages", value: wagesFormatted)
-            SummaryRow(label: "Exempt", value: employee.isExempt ? "Yes" : "No")
-            SummaryRow(label: "Taxes", value: taxFormatted)
-            SummaryRow(label: "Net", value: netFormatted)
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(
-            Rectangle()
-                .fill(Color.white)
-        )
-        .overlay(
-            ZStack {
-                DeleteButton {
-                    onDelete?(employee)
+        HStack(alignment: .top, spacing: 15) {
+
+            Image(systemName: "person.text.rectangle.fill")
+                .fontCustom(size: 20, weight: .regular)
+                .foregroundColor(Color.AppColors.ThemeNavy)
+                .frame(width: 42, height: 42)
+                .background(Color.AppColors.ThemeBlueBG)
+                .cornerRadius(8)
+            
+            VStack(alignment: .leading, spacing: 10) {
+                HStack(spacing: 15) {
+                    Text(employee.name)
+                        .fontCustom(size: 16, weight: .bold)
+                        .foregroundColor(.primary)
+                    
+                    if employee.isExempt {
+                        Text("Exempt")
+                            .fontCustom(size: 10, weight: .semibold)
+                            .foregroundColor(.secondary)
+                            .padding(.horizontal, 6)
+                            .padding(.vertical, 2)
+                            .background(Color(.systemGray6))
+                            .cornerRadius(4)
+                    }
+                }
+                
+                VStack(spacing: 8) {
+                    PayrollAmountRow(
+                        title: "Gross Wages:",
+                        value: wagesFormatted,
+                        valueColor: .primary
+                    )
+
+                    PayrollAmountRow(
+                        title: "Tax Deducted:",
+                        value: taxFormatted,
+                        valueColor: Color.AppColors.ThemeRed,
+                        valueWeight: .semibold
+                    )
+
+                    PayrollAmountRow(
+                        title: "Net Payout:",
+                        value: netFormatted,
+                        valueColor: Color.AppColors.ThemeGreen
+                    )
                 }
             }
-            .padding(.trailing, 15 ),
-            alignment: .bottomTrailing
+            
+            if onDelete != nil {
+                Button {
+                    onDelete?(employee)
+                } label: {
+                    Image(systemName: "trash")
+                        .fontCustom(size: 13, weight: .regular)
+                        .foregroundColor(Color.AppColors.ThemeRed)
+                        .frame(width: 32, height: 32)
+                        .background(Color(.systemGray6))
+                        .clipShape(Circle())
+                }
+                .buttonStyle(PlainButtonStyle())
+            }
+        }
+        .padding(16)
+        .background(
+            RoundedRectangle(cornerRadius: 12, style: .continuous)
+                .fill(Color(.systemBackground))
+                .shadow(color: Color.black.opacity(0.04), radius: 6, x: 0, y: 3)
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: 12, style: .continuous)
+                .stroke(Color(.systemGray5), lineWidth: 1)
         )
         .padding(.horizontal, 5)
     }

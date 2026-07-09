@@ -19,7 +19,7 @@ struct PayrollListView: View {
             VStack(alignment: .leading, spacing: 0) {
                 
                 // MARK: - HEADER
-                HeaderView(headerName: "Payroll Lists")
+                HeaderView(headerName: "Payroll Hub")
                 
                 switch payrollListVM.viewState {
 
@@ -80,6 +80,7 @@ struct PayrollListView: View {
             }
         }
         .navigationBarHidden(true)
+        .edgesIgnoringSafeArea(.bottom)
         .fullScreenCover(isPresented: $showCreatePayroll, onDismiss: {
             payrollListVM.fetchPayrolls()
         }) {
@@ -123,16 +124,24 @@ extension PayrollListView {
             // MARK: CREATE PAYROLL SCREEN TAP ACTION
             showCreatePayroll = true
         } label: {
-            Image(systemName: "plus")
-                .font(.system(size: 35, weight: .semibold))
-                .foregroundColor(.white)
-                .frame(width: 60, height: 60)
-                .background(Color.green)
-                .clipShape(Circle())
-                .shadow(color: Color.black.opacity(0.2), radius: 3, x: 0, y: 5)
+            HStack(spacing: 8) {
+                Image(systemName: "plus")
+                    .font(.system(size: 18, weight: .bold))
+                
+                Text("Create New Payroll")
+                    .fontCustom(size: 16, weight: .bold)
+                    .foregroundColor(Color.white)
+            }
+            .foregroundColor(.white)
+            .padding(.horizontal, 20)
+            .padding(.vertical, 15)
+            .background(Color.black.opacity(0.9))
+            .cornerRadius(25)
+            .shadow(color: Color.black.opacity(0.15), radius: 6, x: 0, y: 3)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
-        .padding(40)
+        .padding(30)
+        .padding(.bottom, 20)
     }
     
 }

@@ -71,33 +71,27 @@ struct PayrollDetailView: View {
                 
                 HStack(spacing: 10) {
                     Text("Created at:")
-                        .font(.system(size: 17, weight: .semibold))
+                        .fontCustom(size: 18, weight: .semibold)
                         .foregroundColor(Color.black)
                     
                     Spacer()
                     
                     Text(formattedDate)
-                        .font(.system(size: 16, weight: .medium))
+                        .fontCustom(size: 17, weight: .medium)
                         .foregroundColor(.blue)
                 }
                 
                 ScrollView(showsIndicators: false) {
-                    LazyVStack(spacing: 15) {
+                    LazyVStack(spacing: 12) {
                         ForEach(payroll.employees) { employee in
                             EmployeeDetailCardView(
                                 employee: employee,
-                                onDelete: { employee in
-                                    
-                                }
+                                onDelete: nil
                             )
-                            
-                            if employee.id != payroll.employees.last?.id {
-                                Divider()
-                            }
                         }
                     }
                     .padding(.top, 5)
-                    .padding(.bottom, 180)
+                    .padding(.bottom, 220)
                 }
                 
             }
@@ -105,18 +99,24 @@ struct PayrollDetailView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             
             VStack(alignment: .leading, spacing: 15) {
-                ReusableRowView(title: "Total Wages", value: totalWagesFormated, valueColor: .blue)
+                ReusableRowView(title: "Total Wages", value: totalWagesFormated, valueColor: .primary)
                 
                 ReusableRowView(title: "Total Tax Deducted", value: totalTaxFormated, valueColor: .red)
                 
-                ReusableRowView(title: "Total Net", value: totalNetFormated, valueColor: .green)
+                Divider()
+                
+                ReusableRowView(title: "Total Net", value: totalNetFormated, valueColor: Color.AppColors.ThemeGreen)
             }
-            .padding(20)
-            .padding(.bottom, 30)
+            .padding(24)
+            .padding(.bottom, 34)
             .background(
-                Rectangle()
-                    .fill(Color.white)
-                    .shadow(radius: 3)
+                RoundedRectangle(cornerRadius: 24, style: .continuous)
+                    .fill(Color(.systemBackground))
+                    .shadow(color: Color.black.opacity(0.06), radius: 10, x: 0, y: -4)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 24, style: .continuous)
+                    .stroke(Color(.systemGray5), lineWidth: 1)
             )
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
             .edgesIgnoringSafeArea(.bottom)
@@ -155,7 +155,7 @@ extension PayrollDetailView {
             } label: {
                 Image(systemName: "chevron.backward")
                     .font(.system(size: 20, weight: .semibold))
-                    .foregroundColor(Color.black)
+                    .foregroundColor(.primary)
                     .padding(10)
                     .contentShape(Rectangle())
             }

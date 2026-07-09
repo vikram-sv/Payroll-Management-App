@@ -14,13 +14,13 @@ struct ToastView: View {
 
     var body: some View {
         Text(message)
-            .font(.system(size: 15, weight: .medium))
+            .fontCustom(size: 14, weight: .semibold)
             .foregroundColor(.white)
-            .padding(.horizontal, 16)
+            .padding(.horizontal, 20)
             .padding(.vertical, 12)
-            .background(Color.black.opacity(0.7))
-            .cornerRadius(3)
-            .shadow(radius: 5)
+            .background(Color.black.opacity(0.85))
+            .clipShape(Capsule())
+            .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 4)
             .padding(.horizontal, 20)
     }
 }

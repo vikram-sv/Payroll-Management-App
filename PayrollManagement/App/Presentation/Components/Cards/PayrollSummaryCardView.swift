@@ -35,34 +35,98 @@ struct PayrollSummaryCardView: View {
     var onDelete: ((Payroll) -> Void)? = nil
 
     var body: some View {
-        
-        VStack(alignment: .leading, spacing: 15) {
-            SummaryRow(label: "Created", value: dateFormatted)
-            SummaryRow(label: "Employees", value: "\(detail.employees.count)")
-            SummaryRow(label: "Total", value: totalFormatted)
-        }
-        .padding(20)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(
-            RoundedRectangle(cornerRadius: 15, style: .continuous)
-                .fill(Color(.systemBackground))
-                .shadow(color: Color.black.opacity(0.1), radius: 2, x: 0, y: 3)
-        )
-        .overlay(
-            RoundedRectangle(cornerRadius: 15, style: .continuous)
-                .stroke(Color(.systemGray4), lineWidth: 1)
-        )
-        .overlay(
-            ZStack {
-                DeleteButton {
-                    onDelete?(detail)
+        HStack(alignment: .top, spacing: 15) {
+            
+            Image(systemName: "calendar")
+                .fontCustom(size: 20, weight: .semibold)
+                .foregroundColor(Color.AppColors.ThemeNavy)
+                .frame(width: 48, height: 48)
+                .background(Color.AppColors.ThemeBlueBG)
+                .cornerRadius(10)
+                .padding(.leading, 8)
+            
+            VStack(alignment: .leading, spacing: 12) {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("CREATION DATE")
+                        .fontCustom(size: 11, weight: .bold)
+                        .foregroundColor(.secondary)
+                    
+                    Text(dateFormatted)
+                        .fontCustom(size: 17, weight: .bold)
+                        .foregroundColor(.primary)
+                }
+                
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("EMPLOYEE COUNT")
+                        .fontCustom(size: 11, weight: .bold)
+                        .foregroundColor(.secondary)
+                    
+                    HStack(spacing: 6) {
+                        Image(systemName: "person.2.fill")
+                            .fontCustom(size: 12, weight: .medium)
+                            .foregroundColor(.secondary)
+                        Text("\(detail.employees.count) Employees")
+                            .fontCustom(size: 15, weight: .medium)
+                            .foregroundColor(.primary)
+                    }
+                }
+                
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("TOTAL DISBURSED")
+                        .fontCustom(size: 11, weight: .bold)
+                        .foregroundColor(.secondary)
+                    
+                    Text(totalFormatted)
+                        .fontCustom(size: 24, weight: .bold)
+                        .foregroundColor(Color.AppColors.ThemeGreen)
                 }
             }
-                .padding(15),
-            alignment: .bottomTrailing
+            
+            Spacer()
+            
+            VStack(alignment: .trailing, spacing: 0) {
+                if onDelete != nil {
+                    Button {
+                        onDelete?(detail)
+                    } label: {
+                        Image(systemName: "trash")
+                            .fontCustom(size: 13, weight: .regular)
+                            .foregroundColor(Color.AppColors.ThemeRed)
+                            .frame(width: 32, height: 32)
+                            .background(Color(.systemGray6))
+                            .clipShape(Circle())
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                }
+                
+                Spacer()
+                
+                Image(systemName: "chevron.right")
+                    .fontCustom(size: 16, weight: .semibold)
+                    .foregroundColor(Color(.systemGray3))
+                    .padding(.bottom, 5)
+            }
+        }
+        .padding(20)
+        .background(
+            RoundedRectangle(cornerRadius: 16, style: .continuous)
+                .fill(Color(.systemBackground))
+                .shadow(color: Color.black.opacity(0.04), radius: 8, x: 0, y: 4)
         )
+        .overlay(
+            RoundedRectangle(cornerRadius: 16, style: .continuous)
+                .stroke(Color(.systemGray5), lineWidth: 1)
+        )
+        .overlay(
+            HStack {
+                Rectangle()
+                    .fill(Color.AppColors.ThemeGreen)
+                    .frame(width: 4)
+                Spacer()
+            }
+        )
+        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
         .padding(.horizontal, 5)
-        
     }
     
 }

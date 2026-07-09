@@ -42,14 +42,14 @@ struct PlaceholderView: View {
             
             VStack(spacing: 10) {
                 Text(title)
-                    .font(.system(size: 17, weight: .medium))
+                    .fontCustom(size: 17, weight: .medium)
                     .foregroundColor(Color.black)
                     .lineLimit(2)
                     .multilineTextAlignment(.center)
                 
                 if message != "" {
                     Text(message)
-                        .font(.system(size: 16, weight: .regular))
+                        .fontCustom(size: 16, weight: .regular)
                         .foregroundColor(.secondary)
                         .lineLimit(3)
                         .multilineTextAlignment(.center)
@@ -61,7 +61,7 @@ struct PlaceholderView: View {
                 onButtonTap?()
             } label: {
                 Text(buttonTitle)
-                    .font(.system(size: 16, weight: .semibold))
+                    .fontCustom(size: 17, weight: .semibold)
                     .foregroundColor(Color.white)
                     .padding(.horizontal, 30)
                     .frame(height: 45)

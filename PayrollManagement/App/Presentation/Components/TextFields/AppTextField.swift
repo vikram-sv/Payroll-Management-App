@@ -33,30 +33,29 @@ struct AppTextField: View {
             HeaderView(headerName: title, fontsize: 18, fontWeight: .medium)
             
             ZStack(alignment: .leading) {
-                
                 TextField("", text: $text)
-                    .font(.system(size: 16, weight: .regular))
-                    .foregroundColor(Color.black)
+                    .fontCustom(size: 16, weight: .regular)
+                    .foregroundColor(.primary)
                     .disableAutocorrection(true)
                     .keyboardType(keyboardType)
                 
                 if text.isEmpty {
                     Text(placeholder)
-                        .font(.system(size: 16, weight: .regular))
-                        .foregroundColor(Color.black.opacity(0.3))
+                        .fontCustom(size: 16, weight: .regular)
+                        .foregroundColor(.secondary.opacity(0.7))
                         .allowsHitTesting(false)
                 }
             }
             .padding(.horizontal, 15)
-            .frame(height: 45)
+            .frame(height: 50)
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(
-                RoundedRectangle(cornerRadius: 5.0)
-                    .fill(Color.white)
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(Color(.systemGray6))
             )
             .overlay(
-                RoundedRectangle(cornerRadius: 5.0)
-                    .stroke(Color.gray, lineWidth: 1.0)
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color(.systemGray5), lineWidth: 1.0)
             )
             .padding(.horizontal, 5)
         }

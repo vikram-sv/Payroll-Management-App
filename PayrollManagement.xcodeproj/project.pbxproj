@@ -29,9 +29,22 @@
 		62FAD13C2FFCC2B100CB3329 /* PayrollManagementUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PayrollManagementUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		ACA9F3302FFF9DAF00DC2597 /* Exceptions for "PayrollManagement" folder in "PayrollManagement" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 62FAD1242FFCC2B000CB3329 /* PayrollManagement */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		62FAD1272FFCC2B100CB3329 /* PayrollManagement */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				ACA9F3302FFF9DAF00DC2597 /* Exceptions for "PayrollManagement" folder in "PayrollManagement" target */,
+			);
 			path = PayrollManagement;
 			sourceTree = "<group>";
 		};
@@ -400,6 +413,7 @@
 				DEVELOPMENT_TEAM = 44YTQH34YT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PayrollManagement/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Payroll Management";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -439,6 +453,7 @@
 				DEVELOPMENT_TEAM = 44YTQH34YT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PayrollManagement/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Payroll Management";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

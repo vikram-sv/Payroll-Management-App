@@ -21,45 +21,52 @@ struct AppPopup: View {
 
     var body: some View {
         ZStack {
-            Color.black.opacity(0.35)
-                .ignoresSafeArea()
-
             VStack(spacing: 20) {
-
+                
                 Text(title)
-                    .font(.title3.bold())
+                    .fontCustom(size: 22, weight: .bold)
+                    .foregroundColor(.primary)
 
                 Text(message)
-                    .font(.body)
+                    .fontCustom(size: 17, weight: .regular)
                     .multilineTextAlignment(.center)
                     .foregroundColor(.secondary)
 
-                HStack(spacing: 12) {
+                HStack(spacing: 15) {
 
                     if let secondaryTitle {
-                        Button(secondaryTitle) {
+                        Button {
                             secondaryAction?()
+                        } label: {
+                            Text(secondaryTitle)
+                                .fontCustom(size: 17, weight: .medium)
+                                .foregroundColor(Color.primary)
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 45)
+                                .background(Color(.systemGray6))
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
                         }
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 44)
-                        .background(Color.gray.opacity(0.15))
-                        .clipShape(RoundedRectangle(cornerRadius: 5))
                     }
 
-                    Button(primaryTitle) {
+                    Button {
                         primaryAction()
+                    } label: {
+                        Text(primaryTitle)
+                            .fontCustom(size: 17, weight: .medium)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 45)
+                            .background(Color.red)
+                            .foregroundColor(.white)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
                     }
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 44)
-                    .background(Color.red)
-                    .foregroundColor(.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 5))
                 }
             }
-            .padding(24)
-            .background(Color.white)
-            .clipShape(RoundedRectangle(cornerRadius: 16))
+            .padding(25)
+            .background(Color(.systemBackground))
+            .clipShape(RoundedRectangle(cornerRadius: 15))
+            .shadow(color: Color.black.opacity(0.15), radius: 15, x: 0, y: 5)
             .padding(.horizontal, 30)
+            
         }
     }
 }

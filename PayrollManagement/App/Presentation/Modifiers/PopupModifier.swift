@@ -14,7 +14,7 @@ struct PopupModifier<PopupContent: View>: ViewModifier {
     let popup: () -> PopupContent
 
     func body(content: Content) -> some View {
-        ZStack(alignment: .bottom) {
+        ZStack(alignment: .center) {
             content
 
             if isPresented {
@@ -27,7 +27,7 @@ struct PopupModifier<PopupContent: View>: ViewModifier {
                     }
 
                 popup()
-                    .transition(.move(edge: .bottom))
+                    .transition(.opacity.combined(with: .scale(scale: 0.9)))
             }
         }
     }

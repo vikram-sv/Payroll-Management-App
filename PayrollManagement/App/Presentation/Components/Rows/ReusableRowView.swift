@@ -18,13 +18,13 @@ struct ReusableRowView: View {
     var body: some View {
         HStack {
             Text(title)
-                .font(.system(size: 17, weight: .semibold))
+                .fontCustom(size: 18, weight: .semibold)
                 .foregroundColor(titleColor)
 
             Spacer(minLength: 0)
 
             Text(value)
-                .font(.system(size: 17, weight: .semibold))
+                .fontCustom(size: 19, weight: .semibold)
                 .foregroundColor(valueColor)
         }
     }

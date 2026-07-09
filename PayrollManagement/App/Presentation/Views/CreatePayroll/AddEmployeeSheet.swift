@@ -26,8 +26,11 @@ struct AddEmployeeSheet: View {
                 .onTapGesture { hideKeyboard() }
             
             VStack(alignment: .leading, spacing: 0) {
-                header.padding(.top)
-                formFields.padding(.top, 15)
+                header
+                    .padding(.top)
+                
+                formFields
+                    .padding(.top, 15)
             }
             .padding(15)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
@@ -75,7 +78,7 @@ extension AddEmployeeSheet {
             } label: {
                 Image(systemName: "xmark")
                     .font(.system(size: 20, weight: .semibold))
-                    .foregroundColor(Color.black)
+                    .foregroundColor(.primary)
                     .padding(10)
                     .contentShape(Rectangle())
             }
@@ -86,7 +89,7 @@ extension AddEmployeeSheet {
         VStack(spacing: 15) {
             AppTextField(
                 title: "Employee Name",
-                placeholder: "Enter Employee Name",
+                placeholder: "Ex: Vikram Sukumaran",
                 text: $employeeName
             )
             
@@ -128,13 +131,13 @@ extension AddEmployeeSheet {
             
         } label: {
             Text("Add Employee")
-                .font(.system(size: 17, weight: .semibold))
-                .foregroundColor(Color.white)
-                .frame(height: 45)
+                .font(.system(size: 16, weight: .semibold))
+                .foregroundColor(.white)
+                .frame(height: 50)
                 .frame(maxWidth: .infinity)
-                .background(Color.blue)
+                .background(Color.AppColors.ThemeNavy)
                 .cornerRadius(10)
-                .contentShape(RoundedRectangle(cornerRadius: 10))
+                .contentShape(RoundedRectangle(cornerRadius: 12))
         }
     }
 }
