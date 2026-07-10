@@ -22,6 +22,8 @@ final class MockPayrollRepository: PayrollRepository {
     var deletePayrollCalled: Bool = false
     var shouldThrowDeleteError = false
     
+    var deleteAllPayrollCalled: Bool = false
+    
     func savePayroll(_ payroll: Payroll) throws {
         savePayrollCalled = true
         savedPayroll = payroll
@@ -46,6 +48,10 @@ final class MockPayrollRepository: PayrollRepository {
     func updatePayroll(_ payroll: Payroll) throws {
         updatePayrollCalled = true
         updatedPayroll = payroll
+    }
+    
+    func deleteAllPayrolls() throws {
+        deleteAllPayrollCalled = true
     }
 }
 

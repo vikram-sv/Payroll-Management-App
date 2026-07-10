@@ -1,13 +1,13 @@
 //
-//  Payroll_ManagementUITestsLaunchTests.swift
-//  Payroll ManagementUITests
+//  PayrollManagementUITestsLaunchTests.swift
+//  PayrollManagementUITests
 //
-//  Created by Vikram Sukumaran on 07/07/2026.
+//  Created by Vikram Sukumaran on 10/07/26.
 //
 
 import XCTest
 
-final class Payroll_ManagementUITestsLaunchTests: XCTestCase {
+final class PayrollManagementUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true

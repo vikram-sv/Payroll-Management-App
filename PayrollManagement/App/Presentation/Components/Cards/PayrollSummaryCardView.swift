@@ -87,6 +87,7 @@ struct PayrollSummaryCardView: View {
                             .clipShape(Circle())
                     }
                     .buttonStyle(PlainButtonStyle())
+                    .accessibilityIdentifier("EditPayrollButton")
                     
                     Button {
                         onDelete?(detail)
@@ -99,6 +100,7 @@ struct PayrollSummaryCardView: View {
                             .clipShape(Circle())
                     }
                     .buttonStyle(PlainButtonStyle())
+                    .accessibilityIdentifier("DeletePayrollButton")
                     
                 }
                 

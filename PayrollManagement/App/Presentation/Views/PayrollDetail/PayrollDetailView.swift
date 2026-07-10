@@ -68,6 +68,7 @@ struct PayrollDetailView: View {
                 
                 // MARK: - HEADER
                 header
+//                    .accessibilityIdentifier("PayrollDetailsHeader")
                 
                 HStack(spacing: 10) {
                     Text("Created at:")
@@ -79,6 +80,7 @@ struct PayrollDetailView: View {
                     Text(formattedDate)
                         .fontCustom(size: 17, weight: .medium)
                         .foregroundColor(.blue)
+                        .accessibilityIdentifier("CreatedDate")
                 }
                 
                 ScrollView(showsIndicators: false) {
@@ -150,7 +152,6 @@ extension PayrollDetailView {
     private var header: some View {
         HStack(spacing: 15) {
             Button {
-                // MARK: SCREEN DISMISS ACTION
                 dismiss()
             } label: {
                 Image(systemName: "chevron.backward")
@@ -159,7 +160,8 @@ extension PayrollDetailView {
                     .padding(10)
                     .contentShape(Rectangle())
             }
-            
+            .accessibilityIdentifier("BackButton")
+
             HeaderView(headerName: "Payroll Details")
         }
     }

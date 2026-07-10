@@ -14,19 +14,20 @@
 			remoteGlobalIDString = 62FAD1242FFCC2B000CB3329;
 			remoteInfo = "Payroll Management";
 		};
-		62FAD13D2FFCC2B100CB3329 /* PBXContainerItemProxy */ = {
+		AC750A393000F74A00332454 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 62FAD11D2FFCC2B000CB3329 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 62FAD1242FFCC2B000CB3329;
-			remoteInfo = "Payroll Management";
+			remoteInfo = PayrollManagement;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		62FAD1252FFCC2B100CB3329 /* PayrollManagement.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PayrollManagement.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62FAD1322FFCC2B100CB3329 /* PayrollManagementTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PayrollManagementTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		62FAD13C2FFCC2B100CB3329 /* PayrollManagementUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PayrollManagementUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC750A2E3000F44000332454 /* PayrollManagement.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = PayrollManagement.xctestplan; sourceTree = "<group>"; };
+		AC750A333000F74A00332454 /* PayrollManagementUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PayrollManagementUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -48,14 +49,14 @@
 			path = PayrollManagement;
 			sourceTree = "<group>";
 		};
-		62FAD1352FFCC2B100CB3329 /* Payroll ManagementTests */ = {
+		62FAD1352FFCC2B100CB3329 /* PayrollManagementTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Payroll ManagementTests";
+			path = PayrollManagementTests;
 			sourceTree = "<group>";
 		};
-		62FAD13F2FFCC2B100CB3329 /* Payroll ManagementUITests */ = {
+		AC750A343000F74A00332454 /* PayrollManagementUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Payroll ManagementUITests";
+			path = PayrollManagementUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -75,7 +76,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		62FAD1392FFCC2B100CB3329 /* Frameworks */ = {
+		AC750A303000F74A00332454 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -88,9 +89,10 @@
 		62FAD11C2FFCC2B000CB3329 = {
 			isa = PBXGroup;
 			children = (
+				AC750A2E3000F44000332454 /* PayrollManagement.xctestplan */,
 				62FAD1272FFCC2B100CB3329 /* PayrollManagement */,
-				62FAD1352FFCC2B100CB3329 /* Payroll ManagementTests */,
-				62FAD13F2FFCC2B100CB3329 /* Payroll ManagementUITests */,
+				62FAD1352FFCC2B100CB3329 /* PayrollManagementTests */,
+				AC750A343000F74A00332454 /* PayrollManagementUITests */,
 				62FAD1262FFCC2B100CB3329 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -100,7 +102,7 @@
 			children = (
 				62FAD1252FFCC2B100CB3329 /* PayrollManagement.app */,
 				62FAD1322FFCC2B100CB3329 /* PayrollManagementTests.xctest */,
-				62FAD13C2FFCC2B100CB3329 /* PayrollManagementUITests.xctest */,
+				AC750A333000F74A00332454 /* PayrollManagementUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -144,7 +146,7 @@
 				62FAD1342FFCC2B100CB3329 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				62FAD1352FFCC2B100CB3329 /* Payroll ManagementTests */,
+				62FAD1352FFCC2B100CB3329 /* PayrollManagementTests */,
 			);
 			name = PayrollManagementTests;
 			packageProductDependencies = (
@@ -153,27 +155,27 @@
 			productReference = 62FAD1322FFCC2B100CB3329 /* PayrollManagementTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		62FAD13B2FFCC2B100CB3329 /* PayrollManagementUITests */ = {
+		AC750A323000F74A00332454 /* PayrollManagementUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 62FAD14C2FFCC2B100CB3329 /* Build configuration list for PBXNativeTarget "PayrollManagementUITests" */;
+			buildConfigurationList = AC750A3B3000F74A00332454 /* Build configuration list for PBXNativeTarget "PayrollManagementUITests" */;
 			buildPhases = (
-				62FAD1382FFCC2B100CB3329 /* Sources */,
-				62FAD1392FFCC2B100CB3329 /* Frameworks */,
-				62FAD13A2FFCC2B100CB3329 /* Resources */,
+				AC750A2F3000F74A00332454 /* Sources */,
+				AC750A303000F74A00332454 /* Frameworks */,
+				AC750A313000F74A00332454 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				62FAD13E2FFCC2B100CB3329 /* PBXTargetDependency */,
+				AC750A3A3000F74A00332454 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				62FAD13F2FFCC2B100CB3329 /* Payroll ManagementUITests */,
+				AC750A343000F74A00332454 /* PayrollManagementUITests */,
 			);
 			name = PayrollManagementUITests;
 			packageProductDependencies = (
 			);
-			productName = "Payroll ManagementUITests";
-			productReference = 62FAD13C2FFCC2B100CB3329 /* PayrollManagementUITests.xctest */;
+			productName = PayrollManagementUITests;
+			productReference = AC750A333000F74A00332454 /* PayrollManagementUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -183,7 +185,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 2650;
+				LastSwiftUpdateCheck = 2660;
 				LastUpgradeCheck = 2650;
 				TargetAttributes = {
 					62FAD1242FFCC2B000CB3329 = {
@@ -193,8 +195,8 @@
 						CreatedOnToolsVersion = 26.5;
 						TestTargetID = 62FAD1242FFCC2B000CB3329;
 					};
-					62FAD13B2FFCC2B100CB3329 = {
-						CreatedOnToolsVersion = 26.5;
+					AC750A323000F74A00332454 = {
+						CreatedOnToolsVersion = 26.6;
 						TestTargetID = 62FAD1242FFCC2B000CB3329;
 					};
 				};
@@ -215,7 +217,7 @@
 			targets = (
 				62FAD1242FFCC2B000CB3329 /* PayrollManagement */,
 				62FAD1312FFCC2B100CB3329 /* PayrollManagementTests */,
-				62FAD13B2FFCC2B100CB3329 /* PayrollManagementUITests */,
+				AC750A323000F74A00332454 /* PayrollManagementUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -235,7 +237,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		62FAD13A2FFCC2B100CB3329 /* Resources */ = {
+		AC750A313000F74A00332454 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -259,7 +261,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		62FAD1382FFCC2B100CB3329 /* Sources */ = {
+		AC750A2F3000F74A00332454 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -274,10 +276,10 @@
 			target = 62FAD1242FFCC2B000CB3329 /* PayrollManagement */;
 			targetProxy = 62FAD1332FFCC2B100CB3329 /* PBXContainerItemProxy */;
 		};
-		62FAD13E2FFCC2B100CB3329 /* PBXTargetDependency */ = {
+		AC750A3A3000F74A00332454 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 62FAD1242FFCC2B000CB3329 /* PayrollManagement */;
-			targetProxy = 62FAD13D2FFCC2B100CB3329 /* PBXContainerItemProxy */;
+			targetProxy = AC750A393000F74A00332454 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -410,7 +412,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 44YTQH34YT;
+				DEVELOPMENT_TEAM = BKBSM4CP63;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PayrollManagement/Info.plist;
@@ -427,7 +429,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.vikram.Payroll-Management";
+				PRODUCT_BUNDLE_IDENTIFIER = com.vikram.PayrollManagement;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -450,7 +452,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 44YTQH34YT;
+				DEVELOPMENT_TEAM = BKBSM4CP63;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PayrollManagement/Info.plist;
@@ -467,7 +469,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.vikram.Payroll-Management";
+				PRODUCT_BUNDLE_IDENTIFIER = com.vikram.PayrollManagement;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -489,13 +491,17 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 44YTQH34YT;
+				DEVELOPMENT_TEAM = BKBSM4CP63;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.vikram.Payroll-ManagementTests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.vikram.PayrollManagementTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
@@ -511,13 +517,17 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 44YTQH34YT;
+				DEVELOPMENT_TEAM = BKBSM4CP63;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.vikram.Payroll-ManagementTests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.vikram.PayrollManagementTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
@@ -527,43 +537,51 @@
 			};
 			name = Release;
 		};
-		62FAD14D2FFCC2B100CB3329 /* Debug */ = {
+		AC750A3C3000F74A00332454 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 44YTQH34YT;
+				DEVELOPMENT_TEAM = BKBSM4CP63;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.vikram.Payroll-ManagementUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.vikram.PayrollManagementUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Payroll Management";
+				TEST_TARGET_NAME = PayrollManagement;
 			};
 			name = Debug;
 		};
-		62FAD14E2FFCC2B100CB3329 /* Release */ = {
+		AC750A3D3000F74A00332454 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 44YTQH34YT;
+				DEVELOPMENT_TEAM = BKBSM4CP63;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.vikram.Payroll-ManagementUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.vikram.PayrollManagementUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Payroll Management";
+				TEST_TARGET_NAME = PayrollManagement;
 			};
 			name = Release;
 		};
@@ -597,11 +615,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		62FAD14C2FFCC2B100CB3329 /* Build configuration list for PBXNativeTarget "PayrollManagementUITests" */ = {
+		AC750A3B3000F74A00332454 /* Build configuration list for PBXNativeTarget "PayrollManagementUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				62FAD14D2FFCC2B100CB3329 /* Debug */,
-				62FAD14E2FFCC2B100CB3329 /* Release */,
+				AC750A3C3000F74A00332454 /* Debug */,
+				AC750A3D3000F74A00332454 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

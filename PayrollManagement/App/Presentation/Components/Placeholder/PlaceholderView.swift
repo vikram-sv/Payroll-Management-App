@@ -13,7 +13,8 @@ struct PlaceholderView: View {
     let title: String
     let message: String
     let buttonTitle: String
-    
+    var accessibilityIdentifierForButton: String?
+    var accessibilityIdentifierForView: String?
     var onButtonTap: (() -> Void)?
     
     init(
@@ -21,12 +22,16 @@ struct PlaceholderView: View {
         title: String = "",
         message: String = "",
         buttonTitle: String = "",
+        accessibilityIdentifierForButton: String? = nil,
+        accessibilityIdentifierForView: String? = nil,
         onButtonTap: (() -> Void)? = nil
     ) {
         self.imageName = imageName
         self.title = title
         self.message = message
         self.buttonTitle = buttonTitle
+        self.accessibilityIdentifierForButton = accessibilityIdentifierForButton
+        self.accessibilityIdentifierForView = accessibilityIdentifierForView
         self.onButtonTap = onButtonTap
     }
     
@@ -70,10 +75,11 @@ struct PlaceholderView: View {
                             .fill(Color.blue)
                     )
             }
+            .accessibilityIdentifier(accessibilityIdentifierForButton ?? "")
         }
         .padding(30)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-        
+        .accessibilityIdentifier(accessibilityIdentifierForView ?? "")
     }
 }
 

@@ -21,6 +21,7 @@ struct PayrollListView: View {
                 
                 // MARK: - HEADER
                 HeaderView(headerName: "Payroll Hub")
+                    .accessibilityIdentifier("PayrollHubIdentifier")
                 
                 Text("Welcome to Payroll Hub! Create, organize, and manage your payrolls all in one place.")
                     .fontCustom(size: 15, weight: .regular)
@@ -39,6 +40,8 @@ struct PayrollListView: View {
                         title: "No Payrolls",
                         message: "Tap the button below to add a new payroll",
                         buttonTitle: "Add New Payroll",
+                        accessibilityIdentifierForButton: "AddNewPayrollPlaceholderButton",
+                        accessibilityIdentifierForView: "AddNewPayrollPlaceholder",
                         onButtonTap: {
                             showCreatePayroll = true
                         }
@@ -64,6 +67,7 @@ struct PayrollListView: View {
                                         }
                                     )
                                 }
+                                .accessibilityIdentifier("PayrollSummaryCard")
                             }
                         }
                         .padding(.top, 20)
@@ -75,6 +79,8 @@ struct PayrollListView: View {
                         title: "Something went wrong",
                         message: message,
                         buttonTitle: "Try Again",
+                        accessibilityIdentifierForButton: "PayrollListErrorPlaceholderButton",
+                        accessibilityIdentifierForView: "PayrollListErrorPlaceholder",
                         onButtonTap: {
                             payrollListVM.fetchPayrolls()
                         }
@@ -160,6 +166,7 @@ extension PayrollListView {
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
         .padding(30)
         .padding(.bottom, 20)
+        .accessibilityIdentifier("CreatePayrollButton")
     }
     
 }

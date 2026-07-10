@@ -11,13 +11,17 @@ import CoreData
 @main
 struct PayrollManagementApp: App {
     
-    let persistenceController = PersistenceController.shared
+//    let persistenceController = PersistenceController.shared
+    
+    init() {
+        UITestDataService().prepareApp()
+    }
     
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(\.managedObjectContext,
-                              persistenceController.container.viewContext)
+//                .environment(\.managedObjectContext,
+//                              persistenceController.container.viewContext)
         }
     }
 }

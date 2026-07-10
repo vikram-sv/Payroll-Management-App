@@ -240,7 +240,5 @@ final class PayrollListViewModelTests: XCTestCase {
         XCTAssertEqual(sut.payrollLists.first?.employees.first?.wages, 1200)
         XCTAssertFalse(sut.payrollLists.first?.employees.first?.isExempt ?? true)
     }
-    
-    
 
 }

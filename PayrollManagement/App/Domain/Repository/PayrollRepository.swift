@@ -17,4 +17,7 @@ protocol PayrollRepository {
     
     func updatePayroll(_ payroll: Payroll) throws
     
+    // UI Testing
+    func deleteAllPayrolls() throws
+    
 }

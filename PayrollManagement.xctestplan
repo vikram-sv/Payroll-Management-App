@@ -1,0 +1,38 @@
+{
+  "configurations" : [
+    {
+      "id" : "7F0C68E5-3664-47A8-9C26-3AEFA4286A88",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "performanceAntipatternCheckerEnabled" : true,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:PayrollManagement.xcodeproj",
+      "identifier" : "62FAD1242FFCC2B000CB3329",
+      "name" : "PayrollManagement"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:PayrollManagement.xcodeproj",
+        "identifier" : "62FAD1312FFCC2B100CB3329",
+        "name" : "PayrollManagementTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:PayrollManagement.xcodeproj",
+        "identifier" : "62FAD13B2FFCC2B100CB3329",
+        "name" : "PayrollManagementUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

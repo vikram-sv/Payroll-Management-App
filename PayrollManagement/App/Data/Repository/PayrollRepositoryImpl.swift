@@ -113,4 +113,16 @@ final class PayrollRepositoryImpl: PayrollRepository {
         try context.save()
     }
     
+    // This is for UI Test - To run the UI Test After clearing DB
+    func deleteAllPayrolls() throws {
+
+        let request: NSFetchRequest<NSFetchRequestResult> = PayrollEntity.fetchRequest()
+
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: request)
+
+        try context.execute(deleteRequest)
+
+        try context.save()
+    }
+    
 }
