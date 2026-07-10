@@ -44,6 +44,7 @@ final class PayrollListViewModel: ObservableObject {
             
             try repository.deletePayroll(id: payroll.id)
             payrollLists.removeAll { $0.id == payroll.id }
+            
             viewState = payrollLists.isEmpty ? .empty : .loaded
 
         } catch {
@@ -52,7 +53,9 @@ final class PayrollListViewModel: ObservableObject {
     }
     
     func updatePayrollInList(_ payroll: Payroll) {
-        guard let index = payrollLists.firstIndex(where: { $0.id == payroll.id }) else { return }
+        guard let index = payrollLists.firstIndex(where: { $0.id == payroll.id }) else {
+            return
+        }
         payrollLists[index] = payroll
     }
     

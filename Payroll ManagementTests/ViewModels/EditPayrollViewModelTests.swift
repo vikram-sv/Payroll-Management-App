@@ -1,30 +1,59 @@
 //
-//  CreatePayrollViewModelTests.swift
+//  EditPayrollViewModelTests.swift
 //  PayrollManagementTests
 //
-//  Created by Vikram Sukumaran on 09/07/26.
+//  Created by Vikram Sukumaran on 10/07/26.
 //
 
 import XCTest
 @testable import PayrollManagement
 
-final class CreatePayrollViewModelTests: XCTestCase {
+final class EditPayrollViewModelTests: XCTestCase {
     
-    var sut: CreatePayrollViewModel!
+    var sut: EditPayrollViewModel!
     var mockRepository: MockPayrollRepository!
+    var payroll: Payroll!
 
     override func setUpWithError() throws {
-        
         mockRepository = MockPayrollRepository()
-        sut = CreatePayrollViewModel(repository: mockRepository)
         
+        payroll = Payroll(
+            id: UUID(),
+            createdDate: Date(),
+            employees: []
+        )
+        
+        sut = EditPayrollViewModel(payroll: payroll, repository: mockRepository)
     }
 
     override func tearDownWithError() throws {
-    
         sut = nil
+        payroll = nil
         mockRepository = nil
-        
+    }
+    
+    func testInit_ShouldLoadPayrollEmployees() {
+
+        let employee = Employee(
+            id: UUID(),
+            name: "Vikram",
+            wages: 1200,
+            isExempt: false
+        )
+
+        let payroll = Payroll(
+            id: UUID(),
+            createdDate: Date(),
+            employees: [employee]
+        )
+
+        let sut = EditPayrollViewModel(
+            payroll: payroll,
+            repository: mockRepository
+        )
+
+        XCTAssertEqual(sut.employees.count, 1)
+        XCTAssertEqual(sut.employees.first?.name, "Vikram")
     }
 
     func testAddEmployee_shouldAppendEmployee() {
@@ -112,48 +141,6 @@ final class CreatePayrollViewModelTests: XCTestCase {
         XCTAssertTrue(result.isExempt)
     }
     
-    func testSavePayroll_WhenEmployeesAreEmpty_ShouldNotCallRepository() throws {
-
-        sut.employees = []
-
-        try sut.savePayroll()
-
-        XCTAssertFalse(mockRepository.savePayrollCalled)
-    }
-    
-    func testSavePayroll_WithEmployees_ShouldCallRepository() throws {
-
-        let employee = Employee(
-            id: UUID(),
-            name: "Vikram",
-            wages: 1200,
-            isExempt: false
-        )
-        
-        sut.addEmployee(employee)
-
-        try sut.savePayroll()
-
-        XCTAssertTrue(mockRepository.savePayrollCalled)
-    }
-
-    func testSavePayroll_ShouldSaveCorrectEmployee() throws {
-
-        let employee = Employee(
-            id: UUID(),
-            name: "Vikram",
-            wages: 1200,
-            isExempt: false
-        )
-
-        sut.addEmployee(employee)
-
-        try sut.savePayroll()
-
-        XCTAssertEqual(mockRepository.savedPayroll?.employees.count, 1)
-        XCTAssertEqual(mockRepository.savedPayroll?.employees.first?.name, "Vikram")
-    }
-    
     func testUpdateEmployee_WhenEmployeeExists_ShouldUpdateEmployee() {
         
         let employee = Employee(
@@ -234,4 +221,50 @@ final class CreatePayrollViewModelTests: XCTestCase {
         XCTAssertEqual(sut.employees.first?.name, "Vikram")
     }
     
+    func testUpdatePayroll_withoutEmptyEmployee_shoudReturnErrorAsEmptyPayroll() {
+        
+        sut.employees = []
+        
+        do {
+            let _ = try sut.updatePayroll()
+            
+            XCTFail("Need to throw an Empty payroll error")
+        } catch {
+            XCTAssertEqual(error as? EmployeeValidationError, .emptyPayroll)
+        }
+        
+    }
+    
+    func testUpdatePayroll_withEmployee_shouldCallRepository() throws {
+        
+        let employee = Employee(
+            id: UUID(),
+            name: "Vikram",
+            wages: 1000,
+            isExempt: false
+        )
+        
+        sut.addEmployee(employee)
+        
+        let _ = try sut.updatePayroll()
+        
+        XCTAssertTrue(mockRepository.updatePayrollCalled)
+    }
+    
+    func testUpdatePayroll_ShouldPassUpdatedEmployeesToRepository() throws {
+
+        let employee = Employee(
+            id: UUID(),
+            name: "John",
+            wages: 1500,
+            isExempt: false
+        )
+
+        sut.addEmployee(employee)
+
+        _ = try sut.updatePayroll()
+
+        XCTAssertEqual(mockRepository.updatedPayroll?.employees.count, 1)
+    }
+
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum PayrollListViewState {
+enum PayrollListViewState: Equatable {
     case loading
     case empty
     case loaded

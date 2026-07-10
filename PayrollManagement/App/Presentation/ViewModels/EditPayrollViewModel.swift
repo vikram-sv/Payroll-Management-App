@@ -60,12 +60,10 @@ class EditPayrollViewModel: ObservableObject {
         )
     }
     
-    // MARK: UPDATE PAYROLL IN DB
-    @discardableResult
     func updatePayroll() throws -> Payroll {
         
         guard !employees.isEmpty else {
-            throw EmployeeValidationError.emptyName
+            throw EmployeeValidationError.emptyPayroll
         }
         
         let payroll = Payroll(
