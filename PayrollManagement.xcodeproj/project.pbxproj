@@ -34,7 +34,7 @@
 		ACA9F3302FFF9DAF00DC2597 /* Exceptions for "PayrollManagement" folder in "PayrollManagement" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Info.plist,
+				AppData/Info.plist,
 			);
 			target = 62FAD1242FFCC2B000CB3329 /* PayrollManagement */;
 		};
