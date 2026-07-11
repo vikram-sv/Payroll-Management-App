@@ -30,6 +30,7 @@ struct CreatePayrollView: View {
                         title: "No Employees",
                         message: "Tap the button below to add a new employee",
                         buttonTitle: "Add Employee",
+                        accessibilityIdentifierForButton: "PlaceholderAddEmployeeButton",
                         accessibilityIdentifierForView: "AddEmployeesPlaceHolder",
                         onButtonTap: {
                             showAddEmployeeSheet = true
@@ -165,6 +166,7 @@ extension CreatePayrollView {
                 .cornerRadius(10)
                 .contentShape(RoundedRectangle(cornerRadius: 10))
         }
+        .accessibilityIdentifier("SavePayrollButton")
     }
     
     

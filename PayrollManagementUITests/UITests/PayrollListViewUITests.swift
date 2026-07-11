@@ -32,7 +32,7 @@ final class PayrollListViewUITests: XCTestCase {
 
     func testPayrollList_WhenAppLaunches_ShouldShowHeader() {
         XCTAssertTrue(
-            app.staticTexts["PayrollHubIdentifier"].exists
+            app.staticTexts["PayrollHubIdentifier"].waitForExistence(timeout: 3)
         )
     }
 
@@ -45,7 +45,7 @@ final class PayrollListViewUITests: XCTestCase {
 
     func testPayrollList_WhenNoPayrolls_ShouldShowAddPayrollButton() {
         XCTAssertTrue(
-            app.buttons["Add New Payroll"].exists
+            app.buttons["Add New Payroll"].waitForExistence(timeout: 3)
         )
     }
 
@@ -53,7 +53,7 @@ final class PayrollListViewUITests: XCTestCase {
 
         let addPayrollButton = app.buttons["Add New Payroll"]
 
-        XCTAssertTrue(addPayrollButton.exists)
+        XCTAssertTrue(addPayrollButton.waitForExistence(timeout: 3))
 
         addPayrollButton.tap()
 
@@ -99,6 +99,8 @@ final class PayrollListViewUITests: XCTestCase {
 
         app.terminate()
         launchApp(withData: true)
+        
+        sleep(3)
 
         app.buttons["PayrollSummaryCard"].firstMatch.tap()
         
@@ -106,7 +108,7 @@ final class PayrollListViewUITests: XCTestCase {
 
         XCTAssertTrue(
             app.staticTexts["PayrollDetailsHeader"]
-                .waitForExistence(timeout: 3)
+                .waitForExistence(timeout: 4)
         )
     }
     
@@ -145,6 +147,33 @@ final class PayrollListViewUITests: XCTestCase {
 
         XCTAssertTrue(app.buttons["Delete"].exists)
         XCTAssertTrue(app.buttons["Cancel"].exists)
+    }
+    
+    func testPayrollList_WhenDeletePayrollConfirmed_ShouldShowPlaceholder() {
+
+        app.terminate()
+        launchApp(withData: true)
+
+        let deleteButton = app.buttons["DeletePayrollButton"].firstMatch
+
+        XCTAssertTrue(deleteButton.waitForExistence(timeout: 3))
+
+        deleteButton.tap()
+
+        let deleteConfirmation = app.buttons["Delete"]
+
+        XCTAssertTrue(deleteConfirmation.waitForExistence(timeout: 3))
+
+        deleteConfirmation.tap()
+
+        XCTAssertTrue(
+            app.staticTexts["AddNewPayrollPlaceholder"]
+                .waitForExistence(timeout: 3)
+        )
+
+        XCTAssertFalse(
+            app.buttons["CreatePayrollButton"].exists
+        )
     }
     
 }

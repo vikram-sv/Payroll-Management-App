@@ -68,7 +68,6 @@ struct PayrollDetailView: View {
                 
                 // MARK: - HEADER
                 header
-//                    .accessibilityIdentifier("PayrollDetailsHeader")
                 
                 HStack(spacing: 10) {
                     Text("Created at:")
@@ -163,6 +162,7 @@ extension PayrollDetailView {
             .accessibilityIdentifier("BackButton")
 
             HeaderView(headerName: "Payroll Details")
+                .accessibilityIdentifier("PayrollDetailsHeader")
         }
     }
     

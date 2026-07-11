@@ -60,6 +60,7 @@ struct EditPayrollView: View {
                         title: "No Employees",
                         message: "Tap the button below to add a new employee",
                         buttonTitle: "Add Employee",
+                        accessibilityIdentifierForView: "AddEmployeesPlaceHolder",
                         onButtonTap: {
                             editPayrollVM.selectedEmployee = nil
                             showAddEmployeeSheet = true
@@ -154,6 +155,7 @@ extension EditPayrollView {
         HStack(spacing: 15) {
             
             HeaderView(headerName: "Edit Payroll")
+                .accessibilityIdentifier("EditPayrollHeader")
             
             Button {
                 // MARK: SCREEN DISMISS ACTION
@@ -165,6 +167,7 @@ extension EditPayrollView {
                     .padding(10)
                     .contentShape(Rectangle())
             }
+            .accessibilityIdentifier("CloseEditPayrollButton")
         }
     }
     
@@ -184,6 +187,7 @@ extension EditPayrollView {
                 .cornerRadius(10)
                 .contentShape(RoundedRectangle(cornerRadius: 10))
         }
+        .accessibilityIdentifier("EditAddEmployeeButton")
     }
     
     private var updatePayrollButton: some View {
@@ -206,6 +210,7 @@ extension EditPayrollView {
                 .cornerRadius(10)
                 .contentShape(RoundedRectangle(cornerRadius: 10))
         }
+        .accessibilityIdentifier("UpdatePayrollButton")
     }
     
     

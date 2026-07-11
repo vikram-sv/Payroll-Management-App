@@ -108,6 +108,7 @@ extension AddEmployeeSheet {
                 placeholder: "Ex: Vikram Sukumaran",
                 text: $employeeName
             )
+            .accessibilityIdentifier("EmployeeNameField")
             
             AppTextField(
                 title: "Total Wages",
@@ -115,12 +116,14 @@ extension AddEmployeeSheet {
                 text: $totalWages,
                 keyboardType: .numbersAndPunctuation
             )
+            .accessibilityIdentifier("EmployeeWagesField")
             
             Toggle(isOn: $isTaxExempt) {
                 HeaderView(headerName: "Tax Exempt", fontsize: 18, fontWeight: .medium)
             }
             .padding(5)
             .padding(.top, 10)
+            .accessibilityIdentifier("TaxExemptToggle")
         }
     }
     
@@ -155,5 +158,6 @@ extension AddEmployeeSheet {
                 .cornerRadius(10)
                 .contentShape(RoundedRectangle(cornerRadius: 12))
         }
+        .accessibilityIdentifier("SubmitEmployeeButton")
     }
 }

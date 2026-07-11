@@ -63,6 +63,7 @@ struct EmployeeCardView: View {
                         .clipShape(Circle())
                 }
                 .buttonStyle(PlainButtonStyle())
+                .accessibilityIdentifier("DeleteEmployeeButton_\(employee.name)")
             }
         }
         .padding(16)
