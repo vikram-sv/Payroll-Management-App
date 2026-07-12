@@ -37,34 +37,39 @@ A modern payroll management application built with **SwiftUI** following **MVVM*
 ```
 PayrollManagement
 │
-├── App
+├── AppData
 │   ├── PayrollManagementApp.swift
-│   ├── ContentView.swift
-│   └── SplashView.swift
+│   └── Assets.xcassets
 │
-├── Data
-│   ├── CoreData
-│   └── Repository
-│
-├── Domain
-│   ├── Models
-│   └── Repository
-│
-├── Presentation
-│   ├── Components
-│   ├── Modifiers
-│   ├── ViewModels
-│   ├── Views
-│   └── ViewState
-│
-├── Utilities
-│   ├── Extensions
-│   ├── Fonts
-│   ├── Formatters
-│   ├── Helpers
-│   └── TaxCalculator
-│
-└── Assets
+└── AppFiles
+    │
+    ├── Data
+    │   ├── CoreData
+    │   └── Repository
+    │
+    ├── Domain
+    │   ├── CoreDataModels
+    │   │   └── PayrollModel.xcdatamodeld
+    │   ├── Models
+    │   └── Repository
+    │
+    ├── Presentation
+    │   ├── Components
+    │   ├── Modifiers
+    │   ├── ViewModels
+    │   ├── Views
+    │   │   └── ContentView.swift
+    │   └── ViewState
+    │
+    ├── Service
+    │   └── UITestDataService.swift
+    │
+    └── Utilities
+        ├── Constants
+        ├── Extensions
+        ├── Fonts
+        ├── Formatters
+        └── Helpers
 ```
 
 ---
@@ -103,15 +108,16 @@ The ViewModel exposes observable state and contains presentation logic while rem
 
 ## Domain Layer
 
-Contains the application's business models and repository contracts.
+Contains the application's business models, repository contracts, and Core Data model definitions.
 
 Responsibilities include:
 
 - Business entities
 - Repository protocols
 - Business rules
+- Core Data model schema (`PayrollModel.xcdatamodeld`)
 
-This layer is independent of SwiftUI and Core Data.
+This layer is independent of SwiftUI.
 
 ---
 
@@ -124,6 +130,16 @@ Responsibilities include:
 - CRUD operations
 - Mapping Core Data entities to domain models
 - Local persistence
+
+---
+
+## Service Layer
+
+Contains supporting services used for auxiliary functionality.
+
+Includes:
+
+- `UITestDataService` — provides seeded data for UI test scenarios
 
 ---
 
@@ -185,7 +201,8 @@ Business logic is covered through unit tests for:
 - CreatePayrollViewModel
 - EditPayrollViewModel
 - PayrollListViewModel
-- Repository Layer
+
+Mock objects are provided via the `Mocks/` directory (e.g., `MockPayrollRepository`).
 
 Run Unit Tests
 
@@ -199,13 +216,12 @@ Run Unit Tests
 
 UI automation validates critical user flows including:
 
+- Splash Screen
 - Payroll List
 - Create Payroll
-- Employee Creation
 - Payroll Details
 - Edit Payroll
 - Delete Payroll
-- Employee Deletion
 
 ---
 
