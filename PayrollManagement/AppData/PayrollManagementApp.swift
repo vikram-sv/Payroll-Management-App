@@ -11,8 +11,6 @@ import CoreData
 @main
 struct PayrollManagementApp: App {
     
-//    let persistenceController = PersistenceController.shared
-    
     init() {
         UITestDataService().prepareApp()
     }
@@ -20,8 +18,6 @@ struct PayrollManagementApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-//                .environment(\.managedObjectContext,
-//                              persistenceController.container.viewContext)
         }
     }
 }

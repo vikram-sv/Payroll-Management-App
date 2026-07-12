@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		AC99751830038D6500DF5F4C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = AC99751730038D6000DF5F4C /* README.md */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		62FAD1332FFCC2B100CB3329 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -28,6 +32,7 @@
 		62FAD1322FFCC2B100CB3329 /* PayrollManagementTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PayrollManagementTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC750A2E3000F44000332454 /* PayrollManagement.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = PayrollManagement.xctestplan; sourceTree = "<group>"; };
 		AC750A333000F74A00332454 /* PayrollManagementUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PayrollManagementUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC99751730038D6000DF5F4C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -89,6 +94,7 @@
 		62FAD11C2FFCC2B000CB3329 = {
 			isa = PBXGroup;
 			children = (
+				AC99751730038D6000DF5F4C /* README.md */,
 				AC750A2E3000F44000332454 /* PayrollManagement.xctestplan */,
 				62FAD1272FFCC2B100CB3329 /* PayrollManagement */,
 				62FAD1352FFCC2B100CB3329 /* PayrollManagementTests */,
@@ -227,6 +233,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC99751830038D6500DF5F4C /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
