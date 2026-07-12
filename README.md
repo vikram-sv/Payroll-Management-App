@@ -162,8 +162,8 @@ Net wages are calculated automatically after tax deduction.
 ## Requirements
 
 - macOS
-- Xcode 26 or later
-- iOS 26 Simulator (or later)
+- Xcode 16 or later
+- iOS 15.0+ Deployment Target
 
 ## Installation
 
