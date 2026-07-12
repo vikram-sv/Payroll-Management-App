@@ -176,7 +176,7 @@ git clone https://github.com/vikram-sv/Payroll-Management-App.git
 Navigate to the project
 
 ```bash
-cd PayrollManagement
+cd Payroll-Management-App
 ```
 
 Open the project
