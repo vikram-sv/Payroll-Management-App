@@ -243,14 +243,11 @@ The project was designed with the following principles:
 Potential enhancements include:
 
 - Dependency Injection Container
-- Cloud Synchronization
 - Search and Filtering
 - Payroll Reports
 - CSV / PDF Export
-- Localization
 - Accessibility Improvements
 - Enhanced Error Handling
-- Background Data Synchronization
 - CI/CD Pipeline using GitHub Actions or Xcode Cloud
 
 ---
