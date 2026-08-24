@@ -14,7 +14,7 @@ A modern payroll management application built with **SwiftUI** following **MVVM*
 - Employee wage summary
 - Local data persistence using Core Data
 - Reusable SwiftUI components
-- Unit and UI test coverage
+- Unit and UI test coverages
 
 ---
 
